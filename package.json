@@ -9,13 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@dlightjs/dlight": "^0.0.4",
-    "@babel/generator": "^7.20.7",
+    "@dlightjs/dlight": "^0.0.5",
     "@babel/plugin-proposal-decorators": "^7.20.7",
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
-    "@babel/types": "^7.20.7",
     "vite": "^4.0.0",
     "vite-plugin-dlight-transpiler": "^0.0.8"
   }
