@@ -1,8 +1,0 @@
-import {View} from "@dlightjs/dlight"
-
-
-export class MyJSDComp extends View {
-    Body() {
-        div("hello, dlight js")
-    }
-}

@@ -1,6 +1,5 @@
-import {render} from "@dlightjs/dlight"
-import {MyJSXComp} from "./MyComp.jsx"
-import {MyJSDComp} from "./MyComp.jsd"
+import { render } from "@dlightjs/dlight"
+import { App } from "./App.jsx"
 
 
-render("app", new MyJSDComp())
+render("app", new App())

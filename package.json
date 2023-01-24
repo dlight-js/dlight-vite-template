@@ -1,5 +1,5 @@
 {
-  "name": "dlight-vite-template",
+  "name": "_$NAME$_",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,12 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@dlightjs/dlight": "^0.0.5",
-    "@babel/plugin-proposal-decorators": "^7.20.7",
-    "@babel/preset-env": "^7.20.2",
-    "@babel/preset-react": "^7.18.6",
-    "@babel/preset-typescript": "^7.18.6",
     "vite": "^4.0.0",
-    "vite-plugin-dlight-transpiler": "^0.0.8"
+    "@dlightjs/dlight": "^0.0.10",
+    "vite-plugin-dlight-transpiler": "^0.0.10"
   }
 }
