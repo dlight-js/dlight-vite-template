@@ -1,5 +1,5 @@
 {
-  "name": "_$NAME$_",
+  "name": "dlight-vite-template",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "vite": "^4.0.0",
-    "@dlightjs/dlight": "^0.2.5",
-    "vite-plugin-dlight-transpiler": "^0.2.5"
+    "@dlightjs/dlight": "^0.3.5",
+    "@dlightjs/useless": "^0.0.3",
+    "vite-plugin-dlight-transpiler": "^0.3.5"
   }
 }
