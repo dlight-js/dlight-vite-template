@@ -1,0 +1,64 @@
+import { HStack, Spacer, VStack, ZStack } from "@dlightjs/components";
+import { Await } from "@dlightjs/decorators";
+import { View } from "@dlightjs/dlight";
+import { button, div, Env, h3, img, Prop, PropState, required, State } from "@dlightjs/useless";
+import { css } from "@dlightjs/emotion";
+// @ts-expect-error
+import { Logo } from "./svgImg/Logo.tsd"
+// @ts-expect-error
+import { DarkThemeIcon } from "./svgImg/DarkThemeIcon.tsd";
+import { LightThemeIcon } from "./svgImg/LightThemeIcon.tsd";
+
+export class Title extends View {
+    @Env changeTheme = required
+    @Env theme = required
+
+    @View
+    ThemeChangeBtn():any {
+        div()
+            .className(css`
+                cursor: pointer;
+            `)
+            .onclick(()=>{
+                this.changeTheme()
+            });
+        {
+            if (this.theme.primary === "black") {
+                LightThemeIcon()
+            } else{
+                DarkThemeIcon()
+            }
+        }
+    }
+
+    Body() {
+        div()
+            .className(titleWrapCss)
+        {
+            HStack()
+                .alignment("center")
+                .width("calc(100vw - 30px)")
+            {
+                // Logo()
+                img()
+                    .src("/img/logo.svg")
+                    .height(30)
+                Spacer()
+                h3("Playground")
+                    .className(titleCss)
+                Spacer()
+                this.ThemeChangeBtn()
+            }
+        }
+    }
+}
+
+const titleCss = css`
+    color: white;
+    /* font-weight: 500; */
+`
+const titleWrapCss = css`
+    width: 100%;
+    background-color: rgb(30,30,30);
+    padding: 20px 15px 20px 15px;
+`

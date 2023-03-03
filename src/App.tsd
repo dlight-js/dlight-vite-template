@@ -1,24 +1,47 @@
-import {View} from "@dlightjs/dlight"
-import {button, div, h1, State } from "@dlightjs/useless"
+import {CustomNode, View} from "@dlightjs/dlight"
+import {button, div, env, h1, Prop, State, th } from "@dlightjs/useless"
+import { css } from "@dlightjs/emotion"
+// @ts-expect-error
+import { Playground } from "./playground/Playground.tsd"
+import * as monaco from 'monaco-editor'
+
+
+const themes = {
+    light: {
+        name: "light",
+        primary: "black",
+        font: "black",
+        bg: "white"
+    },
+    dark: {
+        name: "dark",
+        primary: "white",
+        font: "white",
+        bg: "black"
+    }
+}
 
 export class App extends View {
     @State count = 0
+    @State el?: HTMLElement
+    editor?: any
     derivedCount = this.count + 1
-
-    Body() {
-        div()
-        {
-            h1("DLight.js")
-            div(this.count)
-            div(this.derivedCount)
+    
+    @State theme = themes.dark
+    changeTheme = () => {
+        if (this.theme === themes.light) {
+            this.theme = themes.dark
+        } else {
+            this.theme = themes.light
         }
-        button("+")
-            .onclick(() => {
-                this.count ++
-            })
-        button("-")
-            .onclick(() => {
-                this.count --
-            })
+    }
+    
+    Body() {
+        env()
+            .theme(this.theme)
+            .changeTheme(this.changeTheme)
+        {
+            Playground()
+        }
     }
 }

@@ -1,0 +1,25 @@
+import { HStack, Spacer, VStack, ZStack } from "@dlightjs/components";
+import { Await } from "@dlightjs/decorators";
+import { View } from "@dlightjs/dlight";
+import { button, div, Env, h3, img, Prop, PropState, required, State } from "@dlightjs/useless";
+import { css, styled } from "@dlightjs/emotion";
+
+export class AddIcon extends View {
+    @Prop width = 18
+    @Prop height = 18
+    @Env theme = required
+    @Prop onclick = () => {}
+
+    svg=`<svg xmlns="http://www.w3.org/2000/svg" height="${this.height}" viewBox="0 96 960 960" fill="${this.theme.primary}" width="${this.width}"><path d="M450 856V606H200v-60h250V296h60v250h250v60H510v250h-60Z"/></svg>`
+
+    Body() {
+        Icon()
+            .onclick(this.onclick)
+            .innerHTML(this.svg)
+    }   
+}
+
+const Icon = styled.div`
+    height: 18px;
+    cursor: pointer;
+`
