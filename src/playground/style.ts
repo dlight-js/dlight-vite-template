@@ -7,19 +7,52 @@ export const Div = {
         height: calc(100vh - 30px);
     `,
     Output: styled.div`
-        height: 90vh;
+        height: calc(100vh - 60px);
         display: ${({displayed}: any) => displayed ? "block" : "none"};
+    `,
+    Title: styled.div`
+        width: 100%;
+        background-color: ${({backgroundColor}: any) =>backgroundColor};
+        padding: 5px 15px 5px 15px;
+    `,
+    Tabs: styled.div`
+        background-color: ${({backgroundColor}: any) => backgroundColor};
+        /* padding: 0px 10px; */
+        width: 600px;
+        overflow: scroll;
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        height: 30px;
+        border-right: ${({borderColor}: any) => borderColor} solid 3px;
+        border-top: ${({borderColor}: any) => borderColor} solid 1px;
+    `,
+    TabWrap: styled.div`
+        background-color: ${({backgroundColor}: any)=> backgroundColor};
+        padding: 0px 10px;
+        height: 30px;
+    `,
+    SubTitle: styled.p`
+        color: ${({color}: any)=>color};
+    `,
+    HeaderBG: styled.div`
+        background-color: ${({backgroundColor}: any)=> backgroundColor};
+        width: 100%;
+        height: 30px;
+        overflow: hidden;
+        border-top: ${({borderColor}: any) => borderColor} solid 1px;
     `
 }
 
 export const Button = {
     Header: styled.button`
         border-width: 0;
-        background-color: ${({selected}: any) => selected ? "rgb(11, 41, 64)" : "rgb(30, 30, 30)"};
-        color: ${({selected}: any) => selected ? "#F88070" : "#8AA4DA"};
+        background-color: ${({backgroundColor}: any) => backgroundColor};
+        color: ${({color}: any) => color};
         font-size: 17px;
         width: 50%;
         height: 30px;
+        cursor: pointer;
     `
 }
 
@@ -30,5 +63,11 @@ export const Iframe = {
         border-width: 0;
         background-color: ${({backgroundColor}: any) => backgroundColor};
         display: ${({displayed}: any) => displayed ? "block" : "none"};
+    `
+}
+
+export const Text = {
+    SubTitle: styled.h3`
+        color: ${({color}: any)=>color};
     `
 }

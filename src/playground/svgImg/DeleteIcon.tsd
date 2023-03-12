@@ -1,7 +1,7 @@
 import { HStack, Spacer, VStack, ZStack } from "@dlightjs/components";
 import { Await } from "@dlightjs/decorators";
 import { View } from "@dlightjs/dlight";
-import { button, div, Env, h3, img, Prop, PropState, required, State } from "@dlightjs/useless";
+import { button, div, Env, h3, img, Prop, PropState, required, State } from "@dlightjs/types";
 import { css, styled } from "@dlightjs/emotion";
 
 export class DeleteIcon extends View {

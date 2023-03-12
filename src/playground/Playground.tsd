@@ -1,6 +1,6 @@
 import { HStack, VStack } from "@dlightjs/components";
 import { View } from "@dlightjs/dlight";
-import { div, State } from "@dlightjs/useless";
+import { div, State } from "@dlightjs/types";
 import { TranspilerProjectDto } from "../service/input.dto";
 // @ts-expect-error
 import { Editor } from "./editor/Editor.tsd"
@@ -13,6 +13,7 @@ import { Title } from "./Title.tsd"
 export class Playground extends View {
     @State projectBody: TranspilerProjectDto = {project: [], language: "jsd"}
     @State currTagName: string = ""
+    @State refreshFunc
 
     Body() {
         VStack()
@@ -23,9 +24,11 @@ export class Playground extends View {
                 .spacing(0)
             {
                 Editor()
+                    .refreshFunc(this.refreshFunc)
                     .projectBody(this.projectBody)
                     .currTagName(this.currTagName)
                 Preview()
+                    .refreshFunc(this.refreshFunc)
                     .projectBody(this.projectBody)
                     .currentPath("/" + this.currTagName + ".tsd")
             }

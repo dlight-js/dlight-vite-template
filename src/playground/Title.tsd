@@ -1,13 +1,15 @@
 import { HStack, Spacer, VStack, ZStack } from "@dlightjs/components";
 import { Await } from "@dlightjs/decorators";
 import { View } from "@dlightjs/dlight";
-import { button, div, Env, h3, img, Prop, PropState, required, State } from "@dlightjs/useless";
+import { button, div, Env, h3, img, Prop, PropState, required, State } from "@dlightjs/types";
 import { css } from "@dlightjs/emotion";
 // @ts-expect-error
 import { Logo } from "./svgImg/Logo.tsd"
 // @ts-expect-error
 import { DarkThemeIcon } from "./svgImg/DarkThemeIcon.tsd";
+// @ts-expect-error
 import { LightThemeIcon } from "./svgImg/LightThemeIcon.tsd";
+import { Div, Text } from "./style";
 
 export class Title extends View {
     @Env changeTheme = required
@@ -23,7 +25,7 @@ export class Title extends View {
                 this.changeTheme()
             });
         {
-            if (this.theme.primary === "black") {
+            if (this.theme.name === "dark") {
                 LightThemeIcon()
             } else{
                 DarkThemeIcon()
@@ -32,20 +34,19 @@ export class Title extends View {
     }
 
     Body() {
-        div()
-            .className(titleWrapCss)
+        Div.Title()
+            .backgroundColor(this.theme.titleBg)
         {
             HStack()
                 .alignment("center")
                 .width("calc(100vw - 30px)")
             {
-                // Logo()
                 img()
                     .src("/img/logo.svg")
-                    .height(30)
+                    .height(20)
                 Spacer()
-                h3("Playground")
-                    .className(titleCss)
+                Div.SubTitle("Playground")
+                    .color(this.theme.font)
                 Spacer()
                 this.ThemeChangeBtn()
             }
@@ -56,9 +57,4 @@ export class Title extends View {
 const titleCss = css`
     color: white;
     /* font-weight: 500; */
-`
-const titleWrapCss = css`
-    width: 100%;
-    background-color: rgb(30,30,30);
-    padding: 20px 15px 20px 15px;
 `

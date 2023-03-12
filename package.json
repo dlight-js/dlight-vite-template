@@ -9,13 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@dlightjs/components": "^0.4.0",
-    "@dlightjs/decorators": "^0.0.10",
-    "@dlightjs/emotion": "^0.0.6",
-    "@dlightjs/dlight": "^0.4.6",
-    "@dlightjs/useless": "^0.0.3",
+    "@dlightjs/components": "^0.4.1",
+    "@dlightjs/decorators": "^0.0.11",
+    "@dlightjs/emotion": "^0.0.8",
+    "@dlightjs/dlight": "^0.4.9",
+    "@dlightjs/types": "^0.0.1",
     "monaco-editor": "^0.36.0",
     "vite": "^4.0.0",
-    "vite-plugin-dlight-transpiler": "^0.4.1"
+    "vite-plugin-dlight-transpiler": "^0.4.3"
   }
 }
