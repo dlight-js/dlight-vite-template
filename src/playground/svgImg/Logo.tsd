@@ -1,7 +1,7 @@
 import { HStack, VStack, ZStack } from "@dlightjs/components";
 import { Await } from "@dlightjs/decorators";
 import { View } from "@dlightjs/dlight";
-import { button, div, Prop, required, State } from "@dlightjs/types";
+import { button, div, iframe, img, Prop, required, State } from "@dlightjs/types";
 import { css } from "@dlightjs/emotion";
 
 export class Logo extends View {
