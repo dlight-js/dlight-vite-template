@@ -1,17 +1,14 @@
 import { HStack, VStack } from "@dlightjs/components";
 import { Watch } from "@dlightjs/decorators";
 import { CustomNode, View } from "@dlightjs/dlight";
-import { Env, img, PropState, required, span, State } from "@dlightjs/types";
-import { div } from "@dlightjs/types";
+import { Env, img, PropState, required, span, State } from "@dlightjs/useless";
+import { div } from "@dlightjs/useless";
 import { css } from "@dlightjs/emotion";
 import * as monaco from "monaco-editor"
 import {TranspilerProjectDto} from "../../service/input.dto"
 import { indexCode } from "./const"
-// @ts-expect-error
 import { AddIcon } from "../svgImg/AddIcon.tsd"
-// @ts-expect-error
 import { DeleteIcon } from "../svgImg/DeleteIcon.tsd";
-import { Div } from "../style";
 
 interface IModelStore {
     tabName: string,
@@ -29,7 +26,6 @@ export class Editor extends View {
     @PropState projectBody: TranspilerProjectDto = required
     @PropState currTabId = required
     @PropState currTagName = required
-    @PropState refreshFunc
 
     // ---- state
     @State modelStores: {[key: string]: IModelStore} = {}
@@ -85,7 +81,7 @@ export class Editor extends View {
         return i === 0 ? "tab" : `tab${i}`
     }
 
-    getProjectBody = () => {
+    getProjectBody() {
         const body: TranspilerProjectDto = {
             project: [],
             language: "jsd"
@@ -133,7 +129,6 @@ export class Editor extends View {
         this.bindCancelEditableTag()
         this.initEditor()
         this.getProjectBody()
-        this.refreshFunc = this.getProjectBody
     }
     willUnmount(_els: HTMLElement[], _node: CustomNode): void {
         this.editorEl?.removeEventListener("keydown", this.onKeyDown)
@@ -150,7 +145,7 @@ export class Editor extends View {
         {
             div()
                 .className(tabNameCss)
-                ._color(tabId === this.currTabId ? this.theme.activeFont : this.theme.subFont )
+                .className(tabId === this.currTabId ? activeTabNameCss: "")
             {
                 span(tabName)
                     .contentEditable(this.isTabEdit === tabId)
@@ -164,20 +159,14 @@ export class Editor extends View {
                         this.tagElements[tabId].focus()
                     })         
                     .className(tabNameSpanCss)
-                    .className(preventSelectCss)
-                span(".tsd") 
-                    .className(preventSelectCss)
+                span(".tsd")                
             }
             
             if (tabName !== "index") {
                 DeleteIcon()
                     .onclick((event:any)=>{
                         event.stopPropagation()
-                        if (this.currTabId === tabId){
-                            const tabIdArr = Object.keys(this.modelStores)
-                            const prevTabId = tabIdArr[tabIdArr.length-2]
-                            this.switchTab(prevTabId)
-                        }
+                        if (this.currTabId === tabId) this.switchTab(this.prevTabId)
                         this.modelStores[tabId].model.dispose()
                         delete this.modelStores[tabId]
                         delete this.tagElements[tabId]
@@ -190,19 +179,19 @@ export class Editor extends View {
 
     @View
     Tabs() {
-        Div.Tabs()
-            .backgroundColor(this.theme.tabsBg)
-            .borderColor(this.theme.borderColor)
+        div()
+            .className(tabWrapCss)
         {
             HStack()
                 .alignment("center")
             {
                 for (let tabId of Object.keys(this.modelStores)) { 
-                    Div.TabWrap()
+                    div()
                         .onclick(() => {
                             this.switchTab(tabId)
                         })
-                        .backgroundColor(tabId === this.currTabId ? this.theme.activeTabBg: "transparent")
+                        .className(tabCss)
+                        ._backgroundColor(tabId === this.currTabId ? "#0B2940": "transparent")
                     {
                         // @ts-expect-error
                         this.Tab()
@@ -227,9 +216,6 @@ export class Editor extends View {
             div()
                 .element(this.editorEl)
                 .className(editorCss)
-                .className(css`
-                    border-right: ${this.theme.borderColor} solid 3px;
-                `)
         }
     }
 }
@@ -240,10 +226,16 @@ const editorCss = css`
     height: calc(100vh - 30px);
 `
 
+const tabCss = css`
+    padding: 0px 10px ;
+    height: 30px;
+`
+
 const tabNameCss = css`
     height: 30px;
     line-height: 30px;
     font-size: 18px;
+    color: #8AA4DA;
     background-color: transparent;
     border-width: 0px;
 `
@@ -253,7 +245,13 @@ const tabNameSpanCss = css`
     cursor: pointer;
 `
 
-const preventSelectCss = css`
-    -moz-user-select: none;
-    -webkit-user-select: none;
+const activeTabNameCss = css`
+    color: #F88070;
+`
+
+const tabWrapCss = css`
+    background-color: rgb(30, 30, 30);
+    padding: 0px 10px;
+    width: 100%;
+    margin: 2px 0;
 `

@@ -38,8 +38,8 @@ export class Project {
             switch (fileName) {
                 case "@dlightjs/dlight":
                     return await import("@dlightjs/dlight")
-                case "@dlightjs/types":
-                    return await import("@dlightjs/types");
+                case "@dlightjs/useless":
+                    return await import("@dlightjs/useless");
                 case "@dlightjs/components":
                     return await import("@dlightjs/components");
                 case "@dlightjs/decorators":

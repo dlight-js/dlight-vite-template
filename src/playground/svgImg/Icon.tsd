@@ -1,6 +1,6 @@
 
 import { View } from "@dlightjs/dlight";
-import { div, Prop, required } from "@dlightjs/types";
+import { div, Prop, required } from "@dlightjs/useless";
 
 export class Icon extends View {
     @Prop _$content = required
